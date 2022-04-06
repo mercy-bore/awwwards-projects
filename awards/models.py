@@ -13,3 +13,5 @@ class Post(models.Model):
     description = models.TextField(max_length=255)
     technologies = models.CharField(max_length=200, blank=True)
     date = models.DateTimeField(auto_now_add=True, blank=True)
+    photo = models.ImageField(upload_to='images/', default='default.png')
+
