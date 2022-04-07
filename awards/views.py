@@ -15,7 +15,8 @@ import os
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    projects = Post.display_posts()
+    return render(request, 'home.html',{"posts": projects})
 
 def register(request):
   if request.method == 'POST':
@@ -26,7 +27,7 @@ def register(request):
       username = form.cleaned_data.get('username')
 
       messages.success(request,f'Account for {username} created,you can now login')
-      return redirect('login')
+      return redirect('registration/login.html')
   else:
     form = Registration()
   return render(request,'registration/registration_form.html',{"form":form})

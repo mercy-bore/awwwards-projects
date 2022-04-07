@@ -1,1 +1,35 @@
-{%extends 'base.html'%} {% block content %} {{block.super}} {% endblock %}
+{%extends 'base.html'%} {% block content %} {{block.super}} {{block.content}}{% for p in posts %}
+
+<div class="row" style="border-radius: 25px;">
+
+    <!--Display news Article images  -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <img src="{{p.photo.url}}" class="img-responsive" alt="Image" style="width:600px;height:400px; ">
+    </div>
+    <!-- displaying News articles -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <h2 class="text-center" style="color: #6153cc;"> {{ p.title }} </h2>
+    </div>
+    <!--Display news Article post -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <p>{{p.description}}</p>
+        <p>
+            <a href="{{p.url}}"> View Project</a>
+        </p>
+
+
+    </div>
+    <!--Display news Article date posted -->
+
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="color: #6153cc;">
+        <p>Posted by </p>
+    </div>
+</div><br> {% empty %}
+<div class="row">
+    <h2 class="text-center">There No Projects
+    </h2>
+</div>
+{% endfor %}
+
+
+</div>{% endblock %}
