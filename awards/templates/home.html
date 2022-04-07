@@ -1,32 +1,23 @@
 {%extends 'base.html'%} {% block content %} {{block.super}} {{block.content}}{% for p in posts %}
+<div class="row " id="{{p.id}} " tabindex=" " role="dialog " aria-labelledby="exampleModalCenterTitle ">
+    <div class="modal-dialog modal-dialog-centered " role="document ">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="exampleModalLongTitle " style="color: #6153cc; "> {{p.title}} </h5>
+            </div>
+            <div class="modal-body col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                <img src=" {{p.photo.url}} " class="img-responsive " alt="Image " class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " height="300 " width="450 "> </a>
+                <h2 class="text-center " style="color: #6153cc; "> {{ p.title}} </h2>
+                <p>{{p.description}}</p>
+                <a href="{{p.url}}" class="btn btn-primary">View Project</a>
+            </div>
 
-<div class="row" style="border-radius: 25px;">
-
-    <!--Display news Article images  -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <img src="{{p.photo.url}}" class="img-responsive" alt="Image" style="width:600px;height:400px; ">
+        </div>
     </div>
-    <!-- displaying News articles -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <h2 class="text-center" style="color: #6153cc;"> {{ p.title }} </h2>
-    </div>
-    <!--Display news Article post -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <p>{{p.description}}</p>
-        <p>
-            <a href="{{p.url}}"> View Project</a>
-        </p>
-
-
-    </div>
-    <!--Display news Article date posted -->
-
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="color: #6153cc;">
-        <p>Posted by </p>
-    </div>
-</div><br> {% empty %}
-<div class="row">
-    <h2 class="text-center">There No Projects
+</div>
+<br> {% empty %}
+<div class="row ">
+    <h2 class="text-center ">There No Projects
     </h2>
 </div>
 {% endfor %}
