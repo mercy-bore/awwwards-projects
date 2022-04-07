@@ -8,25 +8,19 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'home' %}">Awwwards</a>
-            </div>
-        </div>
-    </nav>
-    <nav class="navbar navbar-inverse" style="background-color:#6153cc; color:aliceblue;">
+
+    <nav class="navbar navbar-inverse" style="background-color:black; color:aliceblue;">
         <div class="container-fluid">
             <div class=" navbar-header ">
-                <a class=" navbar-brand " href="{% url 'home' %} " style="background-color:#6153cc; color:aliceblue;">The Moringa Tribune</a>
+                <a class=" navbar-brand " href="{% url 'home' %} " style="background-color:black; color:aliceblue;">Awwwards Projects</a>
             </div>
             <!-- Adding a search form  -->
 
             <!-- search form end -->
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-6 col-md-6" style="color:aliceblue;">
                 <ul>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" ria-expanded="false">Account
+                    <li class="dropdown" style="color:aliceblue;">
+                        <a href="#" class="dropdown-toggle btn btn-default" style="color:aliceblue;" data-toggle="dropdown" role="button" ria-expanded="false">Account
                               <span class="caret"></span>
                           </a>
                         <ul class="dropdown-menu" role="menu">
@@ -34,9 +28,11 @@
                                 <a href="{%url 'home'%}">Home</a>
                             </li>
 
-                            <li> <a href="{%url 'signup' %}">Signup</a>
+                            <li> <a href="{%url 'register' %}">Signup</a>
                             </li>
-
+                            <li>
+                                <a class='btn btn-default' href="{% url 'logout' %}">Logout</a>
+                            </li>
 
                             <li>
                                 <a href="/admin" style="color:purple;">Admin Panel</a>

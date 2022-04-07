@@ -5,15 +5,17 @@
 # Hoseok Lee <ihooi77@gmail.com>, 2016
 # Jaehong Kim <mixe@korea.com>, 2011
 # Jannis Leidel <jannis@leidel.info>, 2011
+# Jay Oh <theanswer.jay@gmail.com>, 2020
 # Le Tartuffe <magno79@gmail.com>, 2014
 # minsung kang, 2015
+# Yang Chan Woo <oizys18@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-17 11:50+0200\n"
-"PO-Revision-Date: 2017-09-19 16:41+0000\n"
-"Last-Translator: Hoseok Lee <ihooi77@gmail.com>\n"
+"POT-Creation-Date: 2021-01-15 09:00+0100\n"
+"PO-Revision-Date: 2021-07-29 08:54+0000\n"
+"Last-Translator: Yang Chan Woo <oizys18@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/django/django/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,16 +86,16 @@ msgstr ""
 "지 않은 값들을 잃어버리게 됩니다."
 
 msgid ""
-"You have selected an action, but you haven't saved your changes to "
-"individual fields yet. Please click OK to save. You'll need to re-run the "
+"You have selected an action, but you haven’t saved your changes to "
+"individual fields yet. Please click OK to save. You’ll need to re-run the "
 "action."
 msgstr ""
 "개별 필드의 값들을 저장하지 않고 액션을 선택했습니다. OK를 누르면 저장되며, "
 "액션을 한 번 더 실행해야 합니다."
 
 msgid ""
-"You have selected an action, and you haven't made any changes on individual "
-"fields. You're probably looking for the Go button rather than the Save "
+"You have selected an action, and you haven’t made any changes on individual "
+"fields. You’re probably looking for the Go button rather than the Save "
 "button."
 msgstr ""
 "개별 필드에 아무런 변경이 없는 상태로 액션을 선택했습니다. 저장 버튼이 아니"
@@ -179,6 +181,54 @@ msgid "November"
 msgstr "11월"
 
 msgid "December"
+msgstr "12월"
+
+msgctxt "abbrev. month January"
+msgid "Jan"
+msgstr "1월"
+
+msgctxt "abbrev. month February"
+msgid "Feb"
+msgstr "2월"
+
+msgctxt "abbrev. month March"
+msgid "Mar"
+msgstr "3월"
+
+msgctxt "abbrev. month April"
+msgid "Apr"
+msgstr "4월"
+
+msgctxt "abbrev. month May"
+msgid "May"
+msgstr "5월"
+
+msgctxt "abbrev. month June"
+msgid "Jun"
+msgstr "6월"
+
+msgctxt "abbrev. month July"
+msgid "Jul"
+msgstr "7월"
+
+msgctxt "abbrev. month August"
+msgid "Aug"
+msgstr "8월"
+
+msgctxt "abbrev. month September"
+msgid "Sep"
+msgstr "9월"
+
+msgctxt "abbrev. month October"
+msgid "Oct"
+msgstr "10월"
+
+msgctxt "abbrev. month November"
+msgid "Nov"
+msgstr "11월"
+
+msgctxt "abbrev. month December"
+msgid "Dec"
 msgstr "12월"
 
 msgctxt "one letter Sunday"

@@ -1,3 +1,4 @@
+from xml.dom.pulldom import PROCESSING_INSTRUCTION
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -30,3 +31,21 @@ class Post(models.Model):
     description = models.TextField(max_length=255)
     photo = models.ImageField(upload_to='images/', default='default.png')
 
+def save_project(self):
+     self.save()
+
+@classmethod
+def display_projects(cls):
+    posts = cls.objects.all()
+    return posts
+
+@classmethod
+def search_projects(cls,search_term):
+    projects = cls.objects.filter(title__icontains = search_term).all()
+    return projects
+
+def delete_post(self):
+    self.delete()
+
+def __str__(self):
+    return "%s post" % self.title

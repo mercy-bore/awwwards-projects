@@ -1,13 +1,13 @@
 # This file is distributed under the same license as the Django package.
 #
 # Translators:
-# Michael Wolf <milupo@sorbzilla.de>, 2016-2019
+# Michael Wolf <milupo@sorbzilla.de>, 2016-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-08 17:27+0200\n"
-"PO-Revision-Date: 2019-09-23 09:33+0000\n"
+"POT-Creation-Date: 2021-09-21 10:22+0200\n"
+"PO-Revision-Date: 2021-09-28 18:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: Upper Sorbian (http://www.transifex.com/django/django/"
 "language/hsb/)\n"
@@ -19,6 +19,10 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #, python-format
+msgid "Delete selected %(verbose_name_plural)s"
+msgstr "Wubrane %(verbose_name_plural)s zhašeć"
+
+#, python-format
 msgid "Successfully deleted %(count)d %(items)s."
 msgstr "%(count)d %(items)s je so wuspěšnje zhašało."
 
@@ -28,10 +32,6 @@ msgstr "%(name)s njeda so zhašeć."
 
 msgid "Are you sure?"
 msgstr "Sće wěsty?"
-
-#, python-format
-msgid "Delete selected %(verbose_name_plural)s"
-msgstr "Wubrane %(verbose_name_plural)s zhašeć"
 
 msgid "Administration"
 msgstr "Administracija"
@@ -68,6 +68,12 @@ msgstr "Žadyn datum"
 
 msgid "Has date"
 msgstr "Ma datum"
+
+msgid "Empty"
+msgstr "Prózdny"
+
+msgid "Not empty"
+msgstr "Njeprózdny"
 
 #, python-format
 msgid ""
@@ -333,6 +339,19 @@ msgstr "Wubjerće wšě %(total_count)s %(module_name)s"
 msgid "Clear selection"
 msgstr "Wuběr wotstronić"
 
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr "Modele w nałoženju %(name)s"
+
+msgid "Add"
+msgstr "Přidać"
+
+msgid "View"
+msgstr "Pokazać"
+
+msgid "You don’t have permission to view or edit anything."
+msgstr "Nimaće prawo něšto pokazać abo wobdźěłać."
+
 msgid ""
 "First, enter a username and password. Then, you’ll be able to edit more user "
 "options."
@@ -380,6 +399,9 @@ msgstr "Na sydle pokazać"
 
 msgid "Filter"
 msgstr "Filtrować"
+
+msgid "Clear all filters"
+msgstr "Wšě filtry zhašeć"
 
 msgid "Remove from sorting"
 msgstr "Ze sortěrowanja wotstronić"
@@ -456,9 +478,6 @@ msgstr ""
 "Chceće woprawdźe wubrane %(objects_name)s zhašeć? Wšě slědowace objekty a "
 "jich přisłušne zapiski so zhašeja:"
 
-msgid "View"
-msgstr "Pokazać"
-
 msgid "Delete?"
 msgstr "Zhašeć?"
 
@@ -468,16 +487,6 @@ msgstr "Po %(filter_title)s "
 
 msgid "Summary"
 msgstr "Zjeće"
-
-#, python-format
-msgid "Models in the %(name)s application"
-msgstr "Modele w nałoženju %(name)s"
-
-msgid "Add"
-msgstr "Přidać"
-
-msgid "You don’t have permission to view or edit anything."
-msgstr "Nimaće prawo něšto pokazać abo wobdźěłać."
 
 msgid "Recent actions"
 msgstr "Najnowše akcije"
@@ -510,6 +519,15 @@ msgstr ""
 
 msgid "Forgotten your password or username?"
 msgstr "Sće swoje hesło abo wužiwarske mjeno zabył?"
+
+msgid "Toggle navigation"
+msgstr "Nawigaciju přepinać"
+
+msgid "Start typing to filter…"
+msgstr "Pisajće, zo byšće filtrował …"
+
+msgid "Filter navigation items"
+msgstr "Nawigaciske zapiski fitrować"
 
 msgid "Date/time"
 msgstr "Datum/čas"
@@ -578,8 +596,10 @@ msgstr "Druhi %(model)s přidać"
 msgid "Delete selected %(model)s"
 msgstr "Wubrane %(model)s zhašeć"
 
-msgid "Thanks for spending some quality time with the Web site today."
-msgstr "Wulki dźak, zo sće dźensa rjane chwile z websydłom přebywali."
+msgid "Thanks for spending some quality time with the web site today."
+msgstr ""
+"Wulki dźak, zo sće sej čas brał, zo byšće kwalitu websydła dźensa "
+"přepruwował."
 
 msgid "Log in again"
 msgstr "Znowa přizjewić"
