@@ -45,3 +45,25 @@ def post(request):
   else:
     post_form = postProjectForm()
   return render(request,'post.html',{"post_form":post_form})
+
+@login_required
+def profile(request):
+  current_user = request.user
+  posts = Post.objects.all()
+  user_photos = Post.objects.filter(user_id = current_user.id).all()
+  
+  return render(request,'profile/profile.html',{"posts":posts,'user_photos':user_photos,"current_user":current_user})
+
+def new_article(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = postProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.user = current_user
+            article.save()
+        return redirect('home')
+
+    else:
+        form = postProjectForm()
+    return render(request, 'new_article.html', {"form": form})
