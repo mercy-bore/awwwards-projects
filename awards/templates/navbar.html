@@ -15,6 +15,44 @@
             </div>
         </div>
     </nav>
+    <nav class="navbar navbar-inverse" style="background-color:#6153cc; color:aliceblue;">
+        <div class="container-fluid">
+            <div class=" navbar-header ">
+                <a class=" navbar-brand " href="{% url 'home' %} " style="background-color:#6153cc; color:aliceblue;">The Moringa Tribune</a>
+            </div>
+            <!-- Adding a search form  -->
+
+            <!-- search form end -->
+            <div class="col-sm-6 col-md-6">
+                <ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" ria-expanded="false">Account
+                              <span class="caret"></span>
+                          </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{%url 'home'%}">Home</a>
+                            </li>
+
+                            <li> <a href="{%url 'signup' %}">Signup</a>
+                            </li>
+
+
+                            <li>
+                                <a href="/admin" style="color:purple;">Admin Panel</a>
+                            </li>
+                            <li>
+                                <a class='btn btn-default' href="{% url 'login' %}">Login</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+
+    </nav>
 </body>
 
 </html>
