@@ -1,13 +1,16 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse
 import datetime as dt
+from . forms import Registration,UpdateUser,UpdateProfile,postProjectForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.conf import settings
-from .models import Profile
+from .models import Profile,Post
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
+from django.core.exceptions import ObjectDoesNotExist
 import os
 
 # Create your views here.
