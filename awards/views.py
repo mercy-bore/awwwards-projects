@@ -50,7 +50,7 @@ def post(request):
 def profile(request):
   current_user = request.user
   posts = Post.objects.all()
-  user_photos = Post.objects.filter(user_id = current_user.id).all()
+  user_photos = Post.objects.filter(id = current_user.id).all()
   
   return render(request,'profile/profile.html',{"posts":posts,'user_photos':user_photos,"current_user":current_user})
 

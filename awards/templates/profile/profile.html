@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% load bootstrap4 %} {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="row">
+            {% if user.profile.profile_photo.url %}
+            <img src="{{user.profile.profile_photo.url}}" alt="{{user.profile_photo.url}}" style="height: 20vh; width:20vh; border-radius:50%" class="rounded-circle account-img"> {% else %}
+            <i style="font-size:100px;color:#110f10" class="fa fa-user" aria-hidden="true"></i> {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="">{{user.username}}</p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <a href="{% url 'update_profile' %}">
+                        <button class="btn btn-info ml-4 pl-3">Update Profile</button>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <p class="">{{user.profile.bio}}</p>
+
+        </div>
+    </div>
+    <div class="row">
+        <p class="">{{user.profile.bio}}</p>
+    </div>
+</div>
+<hr style="height: 2px; background-color:gray">
+
+</div>
+
+<div class="col-md-3"></div>
+</div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-4">
+        {% if posts %} {% for p in posts %}
+        <div class="profile">
+            <div class="row">
+                <div class="col-md-2">
+                    {% if p.user.profile.profile_photo.url %}
+                    <p>
+                        <a href="{% url 'users_profile' p.user.id %}"><img class="profile_photo" src="{{ p.user.profile.profile_photo.url }}" alt="{{ p.profile.name }}"></p>
+                    {% else %}
+                    <i style="font-size:100px;color:#0e0d0d" class="fa fa-user" aria-hidden="true"></i> {% endif %}
+                </div>
+                <div class="col-md-2">
+                    <p class="username" style="margin-top: 5px;">{{ p.user.username }}</p>
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="card-body">
+
+            <div>
+                <p class=""><strong>{{p.title}}</strong> </p>
+                <p>{{p.description}}</p>
+            </div>
+
+        </div>
+        {% endfor %} {% endif %}
+    </div>
+
+    <div class="col-md-2">
+        <div class="">
+        </div>
+
+    </div>
+    <div class="col-md-3"></div>
+</div>
+</div>
+{% endblock %}

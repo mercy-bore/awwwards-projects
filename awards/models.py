@@ -28,7 +28,7 @@ class Profile(models.Model):
    
     
     def __str__(self):
-        return  self.user
+        return "%s profile" % self.user
 
 
 from tinymce.models import HTMLField
@@ -40,7 +40,7 @@ class Post(models.Model):
     photo = models.ImageField(upload_to='images/', default='default.png')
 
     def __str__(self):
-            return self.title
+        return self.title
         
     def save_project(self):
         self.save()
@@ -60,4 +60,18 @@ class Post(models.Model):
     def delete_post(self):
         self.delete()
 
+
+class ReviewRating(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey( User, on_delete=models.CASCADE)
+    subject = models.CharField(max_length=100, blank=True)
+    review = models.TextField(max_length=500, blank=True)
+    rating = models.FloatField()
+    ip = models.CharField(max_length=20, blank=True)
+    status = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.subject
 

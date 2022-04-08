@@ -1,3 +1,4 @@
+from django.contrib.auth import views 
 from . import views
 from django.urls import re_path,include,path
 from django.conf import settings
@@ -10,15 +11,18 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     re_path(r'^$',views.home,name = 'home'),
-    path('accounts/register/',app_views.register,name='register'),
-    path('accounts/login/',auth_views.LoginView.as_view(template_name = 'registration/login.html'),name='login'),
-    path('logout/',auth_views.LogoutView.as_view(template_name = 'registration/logout.html'),name='logout'),
-    path('accounts/register/',
-        RegistrationView.as_view(success_url='accounts/login/'),
+    re_path('accounts/', include('django_registration.backends.one_step.urls')),
+    re_path('accounts/register/',
+        RegistrationView.as_view(success_url='/profile/'),
         name='django_registration_register'),
-        
     re_path(r'^new/post$', views.new_post, name='new-post'),
     re_path(r'^search/', views.search_results, name='search_results'),
+    re_path(r'^update/',app_views.update_profile,name='update_profile'),
+    re_path('accounts/profile/',views.profile,name='profile'),
+    re_path(r'^feeds_profile/(?P<pk>\d+)$',app_views.users_profile,name='users_profile'),
+
+
+
 
 
 
