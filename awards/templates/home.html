@@ -1,26 +1,99 @@
-{%extends 'base.html'%} {% block content %} {{block.super}} {{block.content}}{% for p in posts %}
-<div class="row " id="{{p.id}} " tabindex=" " role="dialog " aria-labelledby="exampleModalCenterTitle ">
-    <div class="modal-dialog modal-dialog-centered " role="document ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle " style="color: #6153cc; "> {{p.title}} </h5>
-            </div>
-            <div class="modal-body col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-                <img src="{{p.photo.url}}" class="img-responsive" alt="Image" class="col-xs-6 col-sm-6 col-md-6 col-lg-6" height="300" width="450">
-                <h2 class="text-center " style="color: #6153cc; "> {{ p.title}} </h2>
+{%extends 'base.html'%} {% block content %} {{block.super}} {{block.content}}
 
-                <p> {% autoescape on %} {{p.description| safe}} {% endautoescape %}</p> <a href="{{p.url}}" target="_blank" class="btn btn-primary">View Project</a>
+
+<script>
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#myInput').trigger('focus')
+    })
+</script>
+<div class="container ">
+    <!-- Looping through category  -->
+    {% for i in posts %}
+
+    <div class='modal-body col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+        <h5 class="modal-title text-center" id="exampleModalLongTitle"> {{i.title}} </h5>
+
+        <a href="#" class="btn btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{i.id}}">
+            <img src="{{i.photo.url}}" class="img-responsive" alt="Image" height="300px" width="600px"> </a>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="{{i.id}}" tabindex="" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true ">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"> {{i.title}} </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close "><span aria-hidden="true ">&times;</span></button>
+                </div>
+                <div class="modal-body col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <img src=" {{i.photo.url}}" class="img-fluid" alt="Image" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> </a>
+                    <h2 class="text-center"> {{ i.name }} </h2>
+                    <p>{{i.description}}</p>
+                    <a class="btn btn-primary" href="{{i.url}}" target="_blank" role="button">View project</a>
+                </div>
+                <div class="modal-body col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="modal-body col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <header class="section-heading ">
+                            <h5>Reviews</h5>
+                        </header>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <h5>Write your review</h5>
+                            <div>
+                                <!-- !Rating Stars -->
+                                <label for="">How do you rate this project?</label>
+                                <div class="rate">
+                                    <input type="radio" name="rating" id="rating10" value="5" required/>
+                                    <input type="radio" name="rating" id="rating9" value="4.5" required/>
+                                    <input type="radio" name="rating" id="rating8" value="4" required/>
+                                    <input type="radio" name="rating" id="rating7" value="3.5" required/>
+                                    <input type="radio" name="rating" id="rating6" value="3" required/>
+                                    <input type="radio" name="rating" id="rating5" value="2.5" required/>
+                                    <input type="radio" name="rating" id="rating4" value="2" required/>
+                                    <input type="radio" name="rating" id="rating3" value="1.5" required/>
+                                    <input type="radio" name="rating" id="rating2" value="1" required/>
+                                    <input type="radio" name="rating" id="rating1" value="0.5" required/>
+
+
+
+
+
+                                </div>
+                                <br> Review Title :
+                                <input type="text" class="form-control" name="subject"><br>
+                                <p>Review:</p>
+                                <textarea name="review" cols="45" rows="4"></textarea> <br><input type="submit" class="btn btn-primary" value="Submit Review">
+                            </div>
+                        </form>
+                    </div>
+                    <div class='modal-body col-xs-12 col-sm-12 col-md-12 col-lg-12" '>
+                        <p>Randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn 't anything embarrassing hidden in the middle of text. </p>
+                    </div>
+                </div>
+
+
+
             </div>
 
         </div>
     </div>
 </div>
+<!-- end of modal -->
+
+
 <br> {% empty %}
 <div class="row ">
-    <h2 class="text-center ">There No Projects
-    </h2>
+    <h2 class="text-center ">There No images</h2>
+    <p>{{i.description}}</p>
+
 </div>
 {% endfor %}
+</div>
 
 
-</div>{% endblock %}
+
+
+</div>{% endblock %} {% block scripts %} {{block.super}}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
+{% endblock %}

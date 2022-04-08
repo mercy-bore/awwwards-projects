@@ -1,0 +1,22 @@
+{%extends 'base.html'%} {% block content %} {{ block.super}}
+
+<div class="container">
+
+    <!-- Looping through photos   -->
+    <div class="row photo">
+        <div class="col-md-4"></div>
+
+        <!-- displaying photos photos -->
+        <div class="col-md-4">
+            <h2 class="text-success">{{ post.title }}</h2>
+
+            <!--Display photos photo images  -->
+            <img src="{{post.photo.url}}" class="img-thumbnail" alt="Image" onclick="window.open(this.src)">
+            <p style="font-style: oblique;">{{post.description}}</p>
+
+
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+{% endblock %}

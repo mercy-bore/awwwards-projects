@@ -1,5 +1,5 @@
-from django.shortcuts import render,redirect
-from django.http  import HttpResponse
+from django.shortcuts import render,redirect, get_object_or_404
+from django.http  import HttpResponse,Http404
 import datetime as dt
 from . forms import Registration,UpdateUser,UpdateProfile,postProjectForm
 from django.contrib.auth.models import User
@@ -104,3 +104,12 @@ def update_profile(request):
     'profile_form':profile_form
   }
   return render(request,'profile/update.html',params)
+
+
+def detail(request,post_id):
+  current_user = request.user
+  try:
+    post = get_object_or_404(Post, pk = post_id)
+  except ObjectDoesNotExist:
+    raise Http404()
+  return render(request, 'post_detail.html', {'post':post,'current_user':current_user})
