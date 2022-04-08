@@ -99,12 +99,8 @@ def update_profile(request):
   else:
     user_form = UpdateUser(instance=request.user)
     profile_form = UpdateProfile(instance=request.user.profile) 
-  params = {
-    'user_form':user_form,
-    'profile_form':profile_form
-  }
+  params = {'user_form':user_form,'profile_form':profile_form}
   return render(request,'profile/update.html',params)
-
 
 def detail(request,post_id):
   current_user = request.user
@@ -113,3 +109,4 @@ def detail(request,post_id):
   except ObjectDoesNotExist:
     raise Http404()
   return render(request, 'post_detail.html', {'post':post,'current_user':current_user})
+

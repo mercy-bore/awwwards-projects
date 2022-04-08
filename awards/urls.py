@@ -19,8 +19,12 @@ urlpatterns=[
     re_path(r'^search/', views.search_results, name='search_results'),
     re_path(r'^update/',app_views.update_profile,name='update_profile'),
     re_path('accounts/profile/',views.profile,name='profile'),
-    re_path(r'^feeds_profile/(?P<pk>\d+)$',app_views.users_profile,name='users_profile'),
-      re_path('detail/<int:post_id>',views.detail,  name='detail'),
+    re_path(r'^feeds_profile/(?P<pk>\d+)$',app_views.users_profile,name='users_profile'), 
+    re_path(r'^post/(\d+)',views.detail,name ='detail'),
+    
+
+
+
 
 
 
