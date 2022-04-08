@@ -67,3 +67,12 @@ def new_post(request):
     else:
         form = postProjectForm()
     return render(request, 'new_post.html', {"form": form})
+  
+def search(request):
+  if 'search_user' in request.GET and request.GET["search_user"]:
+    search_term = request.GET.get('search_user')
+    users = Profile.search_profiles(search_term)
+    projects= Post.search_projects(search_term)
+    return render(request,'search.html',{"users":users,"projects":projects})
+  else:
+    return render(request,'search.html')

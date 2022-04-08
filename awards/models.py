@@ -24,6 +24,11 @@ class Profile(models.Model):
     @receiver(post_save,sender = User)
     def save_profile(sender,instance,**kwargs):
         instance.profile.save()
+    
+    @classmethod
+    def search_profiles(cls,search_term):
+        profiles = cls.objects.filter(user__username__icontains = search_term).all()
+        return profiles
 
     def __str__(self):
         return  self.user
@@ -52,6 +57,7 @@ class Post(models.Model):
     def search_projects(cls,search_term):
         projects = cls.objects.filter(title__icontains = search_term).all()
         return projects
+   
 
     def delete_post(self):
         self.delete()
