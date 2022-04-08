@@ -18,6 +18,8 @@ urlpatterns=[
         name='django_registration_register'),
         
     re_path(r'^new/post$', views.new_post, name='new-post'),
+    re_path(r'^search/', views.search_results, name='search_results'),
+
 
 
 ]
