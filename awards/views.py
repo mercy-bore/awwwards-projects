@@ -54,7 +54,7 @@ def profile(request):
   
   return render(request,'profile/profile.html',{"posts":posts,'user_photos':user_photos,"current_user":current_user})
 
-def new_article(request):
+def new_post(request):
     current_user = request.user
     if request.method == 'POST':
         form = postProjectForm(request.POST, request.FILES)
@@ -66,4 +66,4 @@ def new_article(request):
 
     else:
         form = postProjectForm()
-    return render(request, 'new_article.html', {"form": form})
+    return render(request, 'new_post.html', {"form": form})

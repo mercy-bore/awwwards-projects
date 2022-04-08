@@ -1,15 +1,15 @@
 {%extends 'base.html'%} {% block content %} {{block.super}} {{block.content}}{% for p in posts %}
 <div class="row " id="{{p.id}} " tabindex=" " role="dialog " aria-labelledby="exampleModalCenterTitle ">
     <div class="modal-dialog modal-dialog-centered " role="document ">
-        <div class="modal-content ">
-            <div class="modal-header ">
-                <h5 class="modal-title " id="exampleModalLongTitle " style="color: #6153cc; "> {{p.title}} </h5>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle " style="color: #6153cc; "> {{p.title}} </h5>
             </div>
             <div class="modal-body col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-                <img src=" {{p.photo.url}} " class="img-responsive " alt="Image " class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " height="300 " width="450 "> </a>
+                <img src="{{p.photo.url}}" class="img-responsive" alt="Image" class="col-xs-6 col-sm-6 col-md-6 col-lg-6" height="300" width="450">
                 <h2 class="text-center " style="color: #6153cc; "> {{ p.title}} </h2>
-                <p>{{p.description}}</p>
-                <a href="{{p.url}}" class="btn btn-primary">View Project</a>
+
+                <p> {% autoescape on %} {{p.description| safe}} {% endautoescape %}</p> <a href="{{p.url}}" target="_blank" class="btn btn-primary">View Project</a>
             </div>
 
         </div>

@@ -26,16 +26,16 @@ class Profile(models.Model):
         instance.profile.save()
 
     def __str__(self):
-        return "%s profile" % self.user
+        return  self.user
 
 
+from tinymce.models import HTMLField
 
 class Post(models.Model):
     title = models.CharField(max_length=155)
     url = models.URLField(max_length=255)
-    description = models.TextField(max_length=255)
+    description = HTMLField()
     photo = models.ImageField(upload_to='images/', default='default.png')
-    user = models.ForeignKey(User,on_delete=models.CASCADE,default='0')
 
     def __str__(self):
             return self.title

@@ -11,41 +11,31 @@
 
     <nav class="navbar navbar-inverse" style="background-color:black; color:aliceblue;">
         <div class="container-fluid">
-            <div class=" navbar-header ">
+            <div class="col-sm-6 col-md-6" class="dropdown show">
+                <a class="btn  btn-default dropdown-toggle" href="#" style="color:aliceblue;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account
+            </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{%url 'home'%}">Home</a>
+                    <a class="dropdown-item" href="{%url 'new-post'%}">Post</a>
+                    <a class="dropdown-item" href="{%url 'register' %}">Signup</a>
+                    <a class="dropdown-item" href="{%url 'logout'}">Logout</a>
+                    <a class="dropdown-item" href="{%url 'admin'}">Admin</a>
+                    <a class="dropdown-item" href="{%url 'login'}">Login</a>
+
+
+                </div>
+            </div>
+            <div class=" navbar-header text-center col-sm-6 col-md-6">
+
                 <a class=" navbar-brand " href="{% url 'home' %} " style="background-color:black; color:aliceblue;">Awwwards Projects</a>
             </div>
             <!-- Adding a search form  -->
 
             <!-- search form end -->
-            <div class="col-sm-6 col-md-6" style="color:aliceblue;">
-                <ul>
-                    <li class="dropdown" style="color:aliceblue;">
-                        <a href="#" class="dropdown-toggle btn btn-default" style="color:aliceblue;" data-toggle="dropdown" role="button" ria-expanded="false">Account
-                              <span class="caret"></span>
-                          </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{%url 'home'%}">Home</a>
-                            </li>
-
-                            <li> <a href="{%url 'register' %}">Signup</a>
-                            </li>
-                            <li>
-                                <a class='btn btn-default' href="{% url 'logout' %}">Logout</a>
-                            </li>
-
-                            <li>
-                                <a href="/admin" style="color:purple;">Admin Panel</a>
-                            </li>
-                            <li>
-                                <a class='btn btn-default' href="{% url 'login' %}">Login</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
 
 
-            </div>
         </div>
 
     </nav>
