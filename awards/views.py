@@ -80,3 +80,9 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
 
+def users_profile(request,pk):
+  user = User.objects.get(pk = pk)
+  projects = Post.objects.filter(user = user)
+  c_user = request.user
+  
+  return render(request,'profile/users_profile.html',{"user":user,"projects":projects,"c_user":c_user})
