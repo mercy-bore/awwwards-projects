@@ -86,3 +86,21 @@ def users_profile(request,pk):
   c_user = request.user
   
   return render(request,'profile/users_profile.html',{"user":user,"projects":projects,"c_user":c_user})
+
+def update_profile(request):
+  if request.method == 'POST':
+    user_form = UpdateUser(request.POST,instance=request.user)
+    profile_form = UpdateProfile(request.POST,request.FILES,instance=request.user.profile)
+    if user_form.is_valid() and profile_form.is_valid():
+      user_form.save()
+      profile_form.save()
+      messages.success(request,'Your Profile account has been updated successfully')
+      return redirect('profile')
+  else:
+    user_form = UpdateUser(instance=request.user)
+    profile_form = UpdateProfile(instance=request.user.profile) 
+  params = {
+    'user_form':user_form,
+    'profile_form':profile_form
+  }
+  return render(request,'profile/update.html',params)
