@@ -80,7 +80,7 @@ def register(request):
     form = Registration()
   return render(request,'registration/registration_form.html',{"form":form})
 
-@login_required
+@login_required(login_url='/accounts/login/')
 def post(request):
   if request.method == 'POST':
     post_form = postProjectForm(request.POST,request.FILES) 
@@ -102,6 +102,7 @@ def profile(request):
   
   return render(request,'profile/profile.html',{"posts":posts,'user_photos':user_photos,"current_user":current_user})
 
+@login_required(login_url='/accounts/login/')
 def new_post(request):
     current_user = request.user
     if request.method == 'POST':
