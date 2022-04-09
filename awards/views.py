@@ -35,6 +35,18 @@ class AwwwardList(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+class MerchDescription(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get_project(self, pk):
+        try:
+            return AwwwardProjects.objects.get(pk=pk)
+        except AwwwardProjects.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        project = self.get_project(pk)
+        serializers = AwwwardSerializer(project)
+        return Response(serializers.data)
       
       
 def home(request):
