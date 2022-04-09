@@ -12,8 +12,18 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 import os
+#!............API>>>>>>>>>>>>
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import  AwwwardProjects
+from .serializer import AwwwardSerializer
 
 # Create your views here.
+class AwwwardList(APIView):
+    def get(self, request, format=None):
+        all_merch = AwwwardProjects.objects.all()
+        serializers = AwwwardSerializer(all_merch, many=True)
+        return Response(serializers.data)
 def home(request):
     projects = Post.display_posts()
     return render(request, 'home.html',{"posts": projects})
