@@ -18,10 +18,13 @@ from rest_framework.views import APIView
 from .models import  AwwwardProjects
 from .serializer import AwwwardSerializer
 from rest_framework import status
+from .permissions import IsAdminOrReadOnly
+
 
 
 # Create your views here.
 class AwwwardList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
     def get(self, request, format=None):
         all_merch = AwwwardProjects.objects.all()
         serializers = AwwwardSerializer(all_merch, many=True)
