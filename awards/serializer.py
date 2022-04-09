@@ -4,4 +4,5 @@ from .models import AwwwardProjects
 class AwwwardSerializer(serializers.ModelSerializer):
     class Meta:
         model = AwwwardProjects
-        fields = ('title','url','description')
+        fields = ('id','title','url','description')
+
