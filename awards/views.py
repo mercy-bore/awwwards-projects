@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 import os
-#!............API>>>>>>>>>>>>
+#!............API/djangorestframework  imports>>>>>>>>>>>>
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import  AwwwardProjects
@@ -23,6 +23,7 @@ from .permissions import IsAdminOrReadOnly
 
 
 # Create your views here.
+# ! start of API views **************************
 class AwwwardList(APIView):
     permission_classes = (IsAdminOrReadOnly,)
     def get(self, request, format=None):
@@ -55,7 +56,12 @@ class AwwwardDescription(APIView):
                 return Response(serializers.data)
             else:
                 return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)      
+    def delete(self, request, pk, format=None):
+        project = self.get_project(pk)
+        project.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
       
+      # ********************* end of API views *********************
 def home(request):
     projects = Post.display_posts()
     return render(request, 'home.html',{"posts": projects})
