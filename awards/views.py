@@ -35,7 +35,7 @@ class AwwwardList(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-class MerchDescription(APIView):
+class AwwwardDescription(APIView):
     permission_classes = (IsAdminOrReadOnly,)
     def get_project(self, pk):
         try:
@@ -47,7 +47,14 @@ class MerchDescription(APIView):
         project = self.get_project(pk)
         serializers = AwwwardSerializer(project)
         return Response(serializers.data)
-      
+    def put(self, request, pk, format=None):
+            project = self.get_project(pk)
+            serializers = AwwwardSerializer(project, request.data)
+            if serializers.is_valid():
+                serializers.save()
+                return Response(serializers.data)
+            else:
+                return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)      
       
 def home(request):
     projects = Post.display_posts()

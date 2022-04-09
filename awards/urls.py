@@ -24,7 +24,9 @@ urlpatterns=[
     re_path('ratings/', include('star_ratings.urls', namespace='ratings')),
     re_path(r'^submit_review/(\d+)', views.submit_review,name ='submit_review'),
     
-    re_path(r'^api/awwward/$', views.AwwwardList.as_view())
+    re_path(r'^api/awwward/$', views.AwwwardList.as_view()),
+    re_path(r'api/awwward/project-id/(?P<pk>[0-9]+)/$',
+        views.AwwwardDescription.as_view())
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
