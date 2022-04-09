@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime as dt
+from django.core.validators import MaxValueValidator,MinValueValidator
+from django.db.models import Avg, Count
+
 
 
 
@@ -76,4 +79,29 @@ class ReviewRating(models.Model):
     
     def __str__(self):
         return self.subject
+    
+    def save_review(self):
+        self.save()
+    def averageReview(self):
+        reviews = ReviewRating.objects.filter(post=self, status=True).aggregate(average=Avg('rating'))
+        avg = 0
+        if reviews['average'] is not None:
+            avg = float(reviews['average'])
+        return avg
 
+    def countReview(self):
+        reviews = ReviewRating.objects.filter(post=self, status=True).aggregate(count=Count('id'))
+        count = 0
+        if reviews['count'] is not None:
+            count = int(reviews['count'])
+        return count
+class Rating(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    score =models.IntegerField(default=0,
+                               validators=[
+                                   MaxValueValidator(5), 
+                                   MinValueValidator(0),
+                               ]
+                               )
+    def __str__(self):
+        return str(self.pk)

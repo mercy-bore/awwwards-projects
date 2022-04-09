@@ -21,6 +21,9 @@ urlpatterns=[
     re_path('accounts/profile/',views.profile,name='profile'),
     re_path(r'^feeds_profile/(?P<pk>\d+)$',app_views.users_profile,name='users_profile'), 
     re_path(r'^post/(\d+)',views.detail,name ='detail'),
+    re_path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    re_path(r'^submit_review/(\d+)', views.submit_review,name ='submit_review'),
+
     
 
 

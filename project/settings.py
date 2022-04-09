@@ -35,6 +35,12 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+# STAR_RATINGS_RERATE = False
+# STAR_RATINGS_RERATE_SAME_DELETE = True
+# STAR_RATINGS_RERATE = True
+# STAR_RATINGS_CLEARABLE = True
+# STAR_RATINGS_RANGE = 5
+# STAR_RATINGS_ANONYMOUS = True
 
 INSTALLED_APPS = [
     'django.contrib.admin',

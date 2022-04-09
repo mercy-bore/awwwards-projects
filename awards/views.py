@@ -1,12 +1,12 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http  import HttpResponse,Http404
 import datetime as dt
-from . forms import Registration,UpdateUser,UpdateProfile,postProjectForm
+from . forms import Registration,UpdateUser,UpdateProfile,postProjectForm,ReviewForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.conf import settings
-from .models import Profile,Post
+from .models import Profile,Post,ReviewRating,Rating
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
@@ -106,7 +106,56 @@ def detail(request,post_id):
   current_user = request.user
   try:
     post = get_object_or_404(Post, pk = post_id)
+    reviews = ReviewRating.objects.filter(pk=post_id, status=True)
+
   except ObjectDoesNotExist:
     raise Http404()
-  return render(request, 'post_detail.html', {'post':post,'current_user':current_user})
+  return render(request, 'post_detail.html', {'post':post,'current_user':current_user,'reviews':reviews})
 
+def submit_review(request, post_id):
+    url = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':
+        try:
+            reviews = ReviewRating.objects.get(user__id=request.user.id, post__id=post_id)
+            form = ReviewForm(request.POST, instance=reviews)
+            form.save()
+            messages.success(request, 'Thank you! Your review has been updated.')
+            return redirect(url)
+        except ReviewRating.DoesNotExist:
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                data = ReviewRating()
+                data.subject = form.cleaned_data['subject']
+                data.rating = form.cleaned_data['rating']
+                data.review = form.cleaned_data['review']
+                data.ip = request.META.get('REMOTE_ADDR')
+                data.post_id = post_id
+                data.user_id = request.user.id
+                data.save()
+                messages.success(request, 'Thank you! Your review has been submitted.')
+                return redirect(url)
+
+# def submit_review(request,post_id):
+#   url = request.META.get("HTTP_REFERER")
+#   if request.method == 'POST':
+#     try:
+#       reviews = ReviewRating.objects.get(user__id=request.user.id,post__id=post_id)
+#       form = ReviewForm(request.POST,instance=reviews)
+#       form.save()
+#       messages.success(request,'Thanks  your review has been updated.')
+#       return redirect(url)
+      
+      
+#     except ReviewRating.DoesNotExist :
+#       form = ReviewForm(request.POST)
+#       if form.is_valid():
+#         data = ReviewRating()
+#         data.subject = form.cleaned_data['subject']
+#         data.review = form.cleaned_data['review']
+#         data.rating = form.cleaned_data['rating']
+#         data.ip = request.META.get("REMOTE_ADDR")
+#         data.post_id =post_id
+#         data.user_id = request.user_id
+#         data.save()
+#         messages.success(request,'Thanks for your feedback!')
+#         return redirect('')
