@@ -105,3 +105,10 @@ class Rating(models.Model):
                                )
     def __str__(self):
         return str(self.pk)
+
+
+# API
+class AwwwardProjects(models.Model):
+    title = models.CharField(max_length=155)
+    url = models.URLField(max_length=255)
+    description = models.TextField(max_length=500)
