@@ -5,6 +5,10 @@ from django.dispatch import receiver
 import datetime as dt
 from django.core.validators import MaxValueValidator,MinValueValidator
 from django.db.models import Avg, Count
+import datetime as dt
+from django.db import models
+from django.utils import timezone
+import datetime
 
 # Create your models here.
 class Profile(models.Model):
@@ -94,7 +98,7 @@ class ReviewRating(models.Model):
 
 
 class Rating(models.Model):
-    rating = (
+    RATE_CHOICES = (
         (1, '1'),
         (2, '2'),
         (3, '3'),
@@ -106,17 +110,13 @@ class Rating(models.Model):
         (9, '9'),
         (10, '10'),
     )
-
-    design = models.IntegerField(choices=rating, default=0, blank=True)
-    usability = models.IntegerField(choices=rating,default=0, blank=True)
-    content = models.IntegerField(choices=rating,default=0, blank=True)
-    score = models.FloatField(default=0, blank=True)
-    design_average = models.FloatField(default=0, blank=True)
-    usability_average = models.FloatField(default=0, blank=True)
-    content_average = models.FloatField(default=0, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='rater')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='ratings', null=True)
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    project = models.ForeignKey(Post,on_delete=models.CASCADE,null=True)
+    design =models.IntegerField(choices=RATE_CHOICES, default=0,blank=False)
+    content =models.IntegerField(choices=RATE_CHOICES, default=0,blank=False)
+    usability =models.IntegerField(choices=RATE_CHOICES, default=0,blank=False)
+    average = models.DecimalField(default=1, blank=False, decimal_places=2, max_digits=40)
+    
     def save_rating(self):
         self.save()
 
@@ -126,7 +126,7 @@ class Rating(models.Model):
         return ratings
 
     def __str__(self):
-        return f'{self.post} Rating'
+        return self.project.title
 
 # API
 class AwwwardProjects(models.Model):

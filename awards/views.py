@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
 import datetime as dt
+from django.urls import reverse
 from . forms import Registration,UpdateUser,UpdateProfile,postProjectForm,ReviewForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
@@ -185,15 +186,43 @@ def update_profile(request):
   params = {'user_form':user_form,'profile_form':profile_form}
   return render(request,'profile/update.html',params)
 
-def detail(request,post_id):
-  current_user = request.user
-  try:
-    post = get_object_or_404(Post, pk = post_id)
-    reviews = ReviewRating.objects.filter(pk=post_id, status=True)
-
-  except ObjectDoesNotExist:
-    raise Http404()
-  return render(request, 'post_detail.html', {'post':post,'current_user':current_user,'reviews':reviews})
+@login_required(login_url='/accounts/login')
+def view_project(request, id):
+    project = Post.objects.get(id=id)
+    rate = Rating.objects.filter(user=request.user, project=project).first()
+    ratings = Rating.objects.all()
+    rating_status = None
+    if rate is None:
+        rating_status = False
+    else:
+        rating_status = True
+    current_user = request.user
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            design = form.cleaned_data['design']
+            usability = form.cleaned_data['usability']
+            content = form.cleaned_data['content']
+            review = Rating()
+            review.project = project
+            review.user = current_user
+            review.design = design
+            review.usability = usability
+            review.content = content
+            review.average = (
+                review.design + review.usability + review.content)/3
+            review.save()
+            return HttpResponseRedirect(reverse('view_project', args=(project.id,)))
+    else:
+        form = ReviewForm()
+    params = {
+        'project': project,
+        'form': form,
+        'rating_status': rating_status,
+        'reviews': ratings,
+        'ratings': rate
+    }
+    return render(request, 'view-project.html', params)
 
 def rating(request,post):
   ratings = Rating.objects.filter(user=request.user, post=post).first()

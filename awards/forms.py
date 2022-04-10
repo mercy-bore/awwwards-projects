@@ -32,8 +32,9 @@ class UpdateUser(forms.ModelForm):
     model = User
     fields = ['username','email']
 
+
+
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Rating
         fields = ['design', 'usability', 'content']
-

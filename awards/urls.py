@@ -23,7 +23,10 @@ urlpatterns=[
     re_path(r'^update/',app_views.update_profile,name='update_profile'),
     re_path('accounts/profile/',views.profile,name='profile'),
     re_path(r'^feeds_profile/(?P<pk>\d+)$',app_views.users_profile,name='users_profile'), 
-    re_path(r'^post/(\d+)',views.detail,name ='detail'),
+    re_path(r'^post/(\d+)',views.view_project,name ='view_project'),
+    # re_path('project/(?P<id>\d+)', views.view_project, name='view_project'),
+
+
     re_path(r'^rating/(\d+)',views.rating,name ='rating'),
 
     re_path('ratings/', include('star_ratings.urls', namespace='ratings')),
