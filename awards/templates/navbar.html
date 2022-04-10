@@ -13,11 +13,11 @@
         <div class="container-fluid">
             {% if user.is_authenticated %}
             <div class=" col-sm-4 col-md-4 ">
-                <a href="# " class="dropdown-toggle btn btn-default  col-sm-4 col-md-4" data-toggle="dropdown" style="color:aliceblue;" role=" button " ria-expanded="false ">Awwwards Project<span class="caret "></span></a>
+                <a href="" class="dropdown-toggle btn btn-default  col-sm-4 col-md-4" data-toggle="dropdown" style="color:aliceblue;" role=" button " ria-expanded="false ">Awwwards Project<span class="caret "></span></a>
                 <div class="dropdown-menu col-sm-4 col-md-4 " aria-labelledby="dropdownMenuLink ">
-                    <a class="dropdown-item " href="{%url 'home'%} ">Home</a>
-                    <a class="dropdown-item " href="{%url 'new-post'%} ">Post</a>
-                    <a class="dropdown-item " href="{%url 'profile'%} ">Profile</a>
+                    <a class="dropdown-item " href="{%url 'home' %} ">Home</a>
+                    <a class="dropdown-item " href="{%url 'new-post' %} ">Post</a>
+                    <a class="dropdown-item " href="{%url 'profile' %} ">Profile</a>
                     <a class="dropdown-item " href="/accounts/password_change">Change Password</a>
                     <a class="dropdown-item " href="/accounts/register">Register</a>
                     <a class="dropdown-item " href="/accounts/logout">Logout</a>
@@ -43,6 +43,8 @@
             </div>
         </div>
     </nav>
+
+
 </body>
 
 </html>

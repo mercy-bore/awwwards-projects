@@ -1,4 +1,4 @@
-{%extends 'base.html'%}{% load bootstrap4 %} {% load static %} {% block content %} {{ block.super}}
+{%extends 'base.html'%}{% load bootstrap4 %} {% load static %}{% load rest_framework %}{% render_form serializer %} {% block content %} {{ block.super}}
 
 <!DOCTYPE html>
 <html>
@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>New Post</title>
-    {{form.media}} {% block styles %} {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
+    {{form.media}} {% block styles %} {% bootstrap_css %} {% endblock %}
 
 </head>
 
@@ -17,6 +16,7 @@
 
     <form action="{%url 'new-post'%}" method="post" enctype="multipart/form-data">
         {%csrf_token%} {% bootstrap_form form%}
+
         <input type="submit" class="btn btn-success btn-lg" value="Post">
     </form>
 

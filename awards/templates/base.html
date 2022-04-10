@@ -1,4 +1,4 @@
-{% load bootstrap4 %} {% load static %}{% load ratings %}
+{% load bootstrap4 %} {% load static %}
 
 <!DOCTYPE html>
 <html>
@@ -10,9 +10,6 @@
     <title> Awwwards Projects </title>
     {% endif %} {% block styles %} {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}"> {% endblock %}
 </head>
 
@@ -22,8 +19,6 @@
 
     <h1 class='text-center'>Welcome to Awwwards Projects{{date|date:"l d-F Y "}}</h1> {%endblock%} {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
-    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
-    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
     {% bootstrap_javascript %} {% endblock %}
 
 </body>

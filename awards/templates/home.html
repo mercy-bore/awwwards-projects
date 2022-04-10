@@ -1,17 +1,24 @@
-{%extends 'base.html'%} {% block content %} {{block.super}} {{block.content}}
+{%extends 'base.html'%} {% load crispy_forms_tags %} {% block content %} {{block.super}}
 <!-- Looping through category  -->
 {% for i in posts %}
 
+
 <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-        <h5>{{i.title}} </h5>
-        <a href="post/{{i.id }}/" class="open-project"><img src="{{i.photo.url}}" alt="" class="img-responsive" height="300" width="600"></a>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card" style="width: 45rem;">
+            <a href="post/{{i.id }}/" class="open-project"><img class="card-img-top" src="{{i.photo.url}}" alt="Card image cap"></a>
+            <div class="card-body">
+                <h5 class="card-title">{{i.title}}</h5>
+                <p class="card-text">{{i.description}}</p>
+                </p>
+                <a href="{{i.url}}" class="btn btn- primary">View Project</a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-md-2"></div>
 </div>
-<br> {% empty %}
-<h2 class="text-center ">There No images</h2>
-{% endfor %} {% endblock %} {% block scripts %} {{block.super}}
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
-{% endblock %}
+
+
+
+{% endfor %} {% endblock %}

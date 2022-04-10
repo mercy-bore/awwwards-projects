@@ -7,6 +7,9 @@ from django.contrib.auth import views as auth_views
 from django_registration.backends.one_step.views import RegistrationView
 from . import views as app_views
 from django.conf.urls.static import static
+from rest_framework import routers
+
+
 
 
 urlpatterns=[
@@ -21,12 +24,17 @@ urlpatterns=[
     re_path('accounts/profile/',views.profile,name='profile'),
     re_path(r'^feeds_profile/(?P<pk>\d+)$',app_views.users_profile,name='users_profile'), 
     re_path(r'^post/(\d+)',views.detail,name ='detail'),
+    re_path(r'^rating/(\d+)',views.rating,name ='rating'),
+
     re_path('ratings/', include('star_ratings.urls', namespace='ratings')),
     re_path(r'^submit_review/(\d+)', views.submit_review,name ='submit_review'),
     
-    re_path(r'^api/awwward/$', views.AwwwardList.as_view()),
-    re_path(r'api/awwward/project-id/(?P<pk>[0-9]+)/$',
-        views.AwwwardDescription.as_view())
+    re_path(r'^api/projects/$', views.ProjectList.as_view()), #api for all projects
+    re_path(r'^api/profiles/$', views.ProfileList.as_view()), #api for all profiles
+    re_path(r'^api/users/$', views.UserList.as_view()), #api for all users
+
+    re_path(r'^api/awwward/project-id/(?P<pk>[0-9]+)/$',
+        views.ProjectDescription.as_view()),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

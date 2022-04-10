@@ -55,7 +55,10 @@ INSTALLED_APPS = [
     'star_ratings',
     'rest_framework',
     'rest_framework.authtoken',
+    'crispy_forms',
 ]
+CRISPY_TEMPLATE_PACK = 'uni_form'
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',

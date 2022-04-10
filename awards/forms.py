@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile,Post,ReviewRating
+from .models import Profile,Post,ReviewRating,Rating
 from django.contrib.auth.models import User
 
 
@@ -33,6 +33,7 @@ class UpdateUser(forms.ModelForm):
     fields = ['username','email']
 
 class ReviewForm(forms.ModelForm):
-  class Meta:
-    model = ReviewRating
-    fields = ['subject','review','rating']
+    class Meta:
+        model = Rating
+        fields = ['design', 'usability', 'content']
+

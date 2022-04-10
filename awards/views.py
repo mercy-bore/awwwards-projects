@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from django.http  import HttpResponse,Http404
+from django.http  import HttpResponse,Http404,HttpResponseRedirect
 import datetime as dt
 from . forms import Registration,UpdateUser,UpdateProfile,postProjectForm,ReviewForm
 from django.contrib.auth.models import User
@@ -16,41 +16,75 @@ import os
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import  AwwwardProjects
-from .serializer import AwwwardSerializer
+from .serializer import ProjectSerializer,ProfileSerializer,UserSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework import viewsets
+
+
 
 
 
 # Create your views here.
+
 # ! start of API views **************************
-class AwwwardList(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
-    def get(self, request, format=None):
-        all_merch = AwwwardProjects.objects.all()
-        serializers = AwwwardSerializer(all_merch, many=True)
+
+
+
+class ProjectList(APIView):
+    def get(self, request,format=None):
+        projects = Post.objects.all()
+        serializers = ProjectSerializer(projects, many=True)
         return Response(serializers.data)
     def post(self, request, format=None):
-        serializers = AwwwardSerializer(data=request.data)
+        serializers = ProjectSerializer(post,data=request.data)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
+
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-class AwwwardDescription(APIView):
+      
+class ProfileList(APIView):
+    def get(self, request,format=None):
+        profiles = Profile.objects.all()
+        serializers = ProfileSerializer(profiles, many=True)
+        return Response(serializers.data)
+    def post(self, request, format=None):
+        serializers = ProfileSerializer(post,data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+      
+class UserList(APIView):
+    def get(self, request,format=None):
+        users = User.objects.all()
+        serializers = UserSerializer(users, many=True)
+        return Response(serializers.data)
+    def post(self, request, format=None):
+        serializers = UserSerializer(post,data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+class ProjectDescription(APIView):
     permission_classes = (IsAdminOrReadOnly,)
     def get_project(self, pk):
         try:
             return AwwwardProjects.objects.get(pk=pk)
         except AwwwardProjects.DoesNotExist:
             return Http404
-
     def get(self, request, pk, format=None):
         project = self.get_project(pk)
-        serializers = AwwwardSerializer(project)
+        serializers = ProjectSerializer(project)
         return Response(serializers.data)
+      
     def put(self, request, pk, format=None):
             project = self.get_project(pk)
-            serializers = AwwwardSerializer(project, request.data)
+            serializers = ProjectSerializer(project, request.data)
             if serializers.is_valid():
                 serializers.save()
                 return Response(serializers.data)
@@ -160,6 +194,49 @@ def detail(request,post_id):
   except ObjectDoesNotExist:
     raise Http404()
   return render(request, 'post_detail.html', {'post':post,'current_user':current_user,'reviews':reviews})
+
+def rating(request,post):
+  ratings = Rating.objects.filter(user=request.user, post=post).first()
+  rating_status = None
+  if ratings is None:
+        rating_status = False
+  else:
+        rating_status = True
+        if request.method == 'POST':
+          form = ReviewForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.user = request.user
+            rate.post = post
+            rate.save()
+            post_ratings = Rating.objects.filter(post=post)
+
+            design_ratings = [d.design for d in post_ratings]
+            design_average = sum(design_ratings) / len(design_ratings)
+
+            usability_ratings = [us.usability for us in post_ratings]
+            usability_average = sum(usability_ratings) / len(usability_ratings)
+
+            content_ratings = [content.content for content in post_ratings]
+            content_average = sum(content_ratings) / len(content_ratings)
+
+            score = (design_average + usability_average + content_average) / 3
+            print(score)
+            rate.design_average = round(design_average, 2)
+            rate.usability_average = round(usability_average, 2)
+            rate.content_average = round(content_average, 2)
+            rate.score = round(score, 2)
+            rate.save()
+            return HttpResponseRedirect(request.path_info)
+        else:
+            form = ReviewForm()
+        params = {
+            'post': post,
+            'rating_form': form,
+            'rating_status': rating_status
+
+        }
+        return render(request, 'post_detail.html',params, {'post':post})
 
 def submit_review(request, post_id):
     url = request.META.get('HTTP_REFERER')
