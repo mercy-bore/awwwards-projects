@@ -1,9 +1,5 @@
 {%extends 'base.html'%} {% load bootstrap4 %} {% block content %}
-<style>
-    .panel {
-        border: none;
-    }
-</style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-1">
@@ -18,7 +14,7 @@
                             <p>
                                 <span style="font-weight: 700;">Description : </span> {{ project.description }}
                             </p>
-                            <p><a href="{{project.url}}" class="text-right" style="text-decoration: none;">
+                            <p><a href="{{project.url}}" class="text-right" target="_blank" style="text-decoration: none;">
                                     Go live <img src="https://img.icons8.com/color/48/000000/circled-up-right--v1.png"
                                         style="width:25px;height:auto" />
                                 </a></p>
@@ -41,50 +37,25 @@
         </div>
         <div class="col-md-1"></div>
     </div>
-</div>
-<div class="container">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <h3 class="text-center">Scores</h3>
-        <div class="col-md-12">
-            <div class="col-md-3" id="c">
-                <span class="sc">Average</span>
-            </div>
-            <div class="col-md-2" id="c">
-                <span class="sc">Design</span>
-            </div>
-            <div class="col-md-2" id="c">
-                <span class="sc">Usability</span>
-            </div>
-            <div class="col-md-2" id="c">
-                <span class="sc">Content</span>
-            </div>
-            <div class="col-md-3" id="c">
-                <span class="sc">Rated by:</span>
-            </div>
-        </div>
-        {% for reviews in reviews %}
-        <div class="col-md-12">
-            {% if project.id == reviews.project.id %}
-            <div class="col-md-3" id="c">
-                <span class="sc">{{ reviews.average }}</span>
-            </div>
-            <div class="col-md-2">
-                <span class="sc">{{ reviews.design }}</span>
-            </div>
-            <div class="col-md-2" id="u">
-                <span class="sc">{{ reviews.usability }}</span>
-            </div>
-            <div class="col-md-2" id="c">
-                <span class="sc">{{ reviews.content }}</span>
-            </div>
-            <div class="col-md-3" id="c">
-                <span class="sc">{{ reviews.user.username }}</span>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-7">
+            {% for reviews in reviews %} {% if project.id == reviews.project.id %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Scores</h5>
+                    <h6 class="card-subtitle mb-2 text-muted" id="c">Average: {{ reviews.average }}</h6>
+                    <p class="card-text">Design: {{reviews.design}}</p>
+                    <p class="card-text">Usability: {{reviews.usability}}</p>
+                    <p class="card-text">Content: {{reviews.content}}</p>
+                    <h5>Rated by: <em>{{reviews.user.username}}</em></h5>
+                </div>
             </div>
             <!-- {% widthratio reviews.average ratings|length 1%} -->
-            {% endif %}
+            {% endif %} {% endfor %}
         </div>
-        {% endfor %}
-        <div class="col-md-2"></div>
+        <div class="col-md-1"></div>
     </div>
-    {% endblock %}
+</div>
+
+{% endblock %}
