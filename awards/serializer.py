@@ -10,7 +10,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ('id','user','profile_photo','bio','name','contact')
 class UserSerializer(serializers.ModelSerializer):
- 
 
     class Meta:
         model = User
