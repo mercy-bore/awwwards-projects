@@ -69,7 +69,9 @@ python manage.py makemigrations
 Open the application on your browser `127.0.0.1:8000`.  
   
  ### Api Endpoints
- 
+ https://mercy-awwwards.herokuapp.com/api/projects/
+ https://mercy-awwwards.herokuapp.com/api/profiles/
+ https://mercy-awwwards.herokuapp.com/api/users/
  
 ## Technology used  
   
