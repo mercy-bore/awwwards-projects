@@ -9,14 +9,12 @@ This project allows users to post their projects for other users to rate accordi
   
 ## Screenshots 
 ###### Home page
+![2](https://user-images.githubusercontent.com/61621637/162689979-f487ad0a-de16-4692-970f-aab8f6447715.png)
+
  
-<img src="">
- ![alt text](http://url/to/img.png)
-![alt text](https://github.com/macc254/awwwards-projects/blob/master/1.png?raw=true)
+###### Rating of a post
 
- ###### Rating of a post
- <img src=""> 
-
+![2](https://user-images.githubusercontent.com/61621637/162690057-744b84f6-97c5-4602-9b86-6689626e0748.png)
 
  
 ## User Story  
