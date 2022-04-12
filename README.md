@@ -5,11 +5,11 @@
 # Description  
 This project allows users to post their projects for other users to rate according to design, usability and content.
 ##  Live Link  
- Click [View Site]()  to visit the site
+ Click [here](https://mercy-awwwards.herokuapp.com/) to visit the site.
   
 ## Screenshots 
 ###### Home page
-![2](htt![1awwward](https://user-images.githubusercontent.com/61621637/162690237-7737b019-b7a9-411c-b2dc-5e129edaeb90.png)
+![2]([1awwward](https://user-images.githubusercontent.com/61621637/162690237-7737b019-b7a9-411c-b2dc-5e129edaeb90.png)
 
  
 ###### Rating of a post
