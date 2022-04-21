@@ -14,6 +14,7 @@ This project allows users to post their projects for other users to rate accordi
 
  
 ###### Rating of a post
+To rate a project click on the image of the project on the homepage and it will redirect you the rating page.
 
 ![2](https://user-images.githubusercontent.com/61621637/162690309-850c6a3d-72b6-4bcc-a32b-f242b639a0b9.png)
 
